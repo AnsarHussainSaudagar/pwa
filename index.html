@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Devices and Service Worker</title>
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <h1>Hello from HTTPS server!</h1>
+
+    <script>
+        // Handle media devices
+        window.onload = function() {
+            if ('mediaDevices' in navigator) {
+                console.log('MediaDevices API is available');
+                
+                // Uncomment to get display media (screen sharing)
+                navigator.mediaDevices.getDisplayMedia({
+                    video: { displaySurface: "browser" }
+                }).then(stream => {
+                    console.log('Display media stream:', stream);
+                }).catch(err => {
+                    console.error('Error getting display media:', err);
+                });
+
+                // Register Service Worker inside the window.onload
+                if ('serviceWorker' in navigator) { 
+                    navigator.serviceWorker.register('service-worker.js')
+                        .then(registration => {
+                            console.log('Service Worker registered with scope:', registration.scope);
+                        })
+                        .catch(error => {
+                            console.log('Service Worker registration failed:', error);
+                        });
+                }
+            } else {
+                console.log('MediaDevices API not supported');
+            }
+        };
+    </script>
+</body>
+</html>
