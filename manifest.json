@@ -11,6 +11,11 @@
         "src": "Icon_Bird_512x512.png",
         "type": "image/png",
         "sizes": "512x512"
+      },
+      {
+        "src": "Cdemu_192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
       }
     ]
   }
