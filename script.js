@@ -1,18 +1,22 @@
 // Simple console log for testing
-console.log("ansar");
 
 // Screen recording with getDisplayMedia()
-navigator.mediaDevices.getDisplayMedia({
-  video: {
-    displaySurface: "browser" // Removed the incomplete part 'b'
-  }
+
+const startBtn = document.querySelector('#start-sharing');
+
+startBtn.addEventListener('click', ()=>{
+  navigator.mediaDevices.getDisplayMedia({
+    video: {
+      displaySurface: "browser" // Removed the incomplete part 'b'
+    }
+  })
+  .then(res => {
+    console.log("Display media stream:", res);
+  })
+  .catch(err => {
+    console.error("Error accessing display media:", err);
+  });
 })
-.then(res => {
-  console.log("Display media stream:", res);
-})
-.catch(err => {
-  console.error("Error accessing display media:", err);
-});
 
 // Service worker registration
 if ('serviceWorker' in navigator) {

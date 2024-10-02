@@ -4,7 +4,6 @@ self.addEventListener('install', event => {
         return cache.addAll([
           '/',
           '/index.html',
-          '/styles.css',
           '/app.js',
           '/Icon_Bird_512x512.png'
         ]);
